@@ -1,10 +1,11 @@
 #!/usr/bin/python3
+
 """
 a script that markdown
 a text file to html
 """
 import sys
-import os.path as path
+from os import path as path
 from sys import argv as argv
 
 if __name__ == "__main__":
@@ -18,4 +19,5 @@ File_out = argv[2]
 if not path.exists(File_in):
     sys.stderr.write("Missing {}\n".format(File_in))
     exit(1)
+
 exit(0)
