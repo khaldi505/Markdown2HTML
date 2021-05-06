@@ -1,25 +1,21 @@
 #!/usr/bin/python3
 """
-a script that will take a markdown file as input, read from
-the file and create another file
-with the same content of the first markdown file
+a script that markdown
+a text file to html
 """
+import sys
+import os.path as path
 from sys import argv as argv
-from sys import exit as exit
-len_arguments = len(argv)
-if len_arguments < 2:
-    print("Usage: ./markdown2html.py README.md README.html")
-    exit(1)
 
-output_file = argv[2]
-markdown_file = argv[1]
-try:
-    f = open(markdown_file, "r")
-except FileNotFoundError as error:
-    print("Missing " + markdown_file)
+if __name__ == "__main__":
+    if len(argv) != 3:
+        sys.stderr.write("Usage: ./markdown2html.py README.md README.html\n")
+        exit(1)
+
+File_in = argv[1]
+File_out = argv[2]
+
+if not path.exists(File_in):
+    sys.stderr.write("Missing {}\n".format(File_in))
     exit(1)
-else:
-    content = f.read()
-    f = open(output_file, "w")
-    f.write(content)
-    exit(0)
+exit(0)
