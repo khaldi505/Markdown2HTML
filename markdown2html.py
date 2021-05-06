@@ -20,3 +20,4 @@ else:
     content = f.read()
     f = open(output_file, "w")
     f.write(content)
+    exit(0)
