@@ -20,7 +20,5 @@ except FileNotFoundError:
     print("Missing " + File_name)
     exit(1)
 else:
-    content = f.read()
     f = open(Out_File, 'w')
-    f.write(content)
     exit(0)
