@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """
-a script that will take a markdown file as input, read from
-the file and create another file
-with the same content of the first markdown file
+a script markdown2html.py that takes an argument 2 strings:
+First argument is the name of the Markdown file
+Second argument is the output file name
 """
 from sys import argv
 
@@ -19,6 +19,6 @@ try:
 except FileNotFoundError:
     print("Missing " + File_name)
     exit(1)
+
 else:
-    f = open(Out_File, 'w')
     exit(0)
