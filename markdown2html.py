@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """
 a script that will take a markdown file as input, read from
-the file and create another file with the same content of the first markdown file
+the file and create another file
+with the same content of the first markdown file
 """
 from sys import argv
 
@@ -17,8 +18,8 @@ try:
     f = open(File_name, 'r')
 except FileNotFoundError:
     print("Missing " + File_name)
-    exit (1)
-else: 
+    exit(1)
+else:
     content = f.read()
     f = open(Out_File, 'w')
     f.write(content)
