@@ -4,10 +4,11 @@ a script markdown2html.py that takes an argument 2 strings:
 First argument is the name of the Markdown file
 Second argument is the output file name
 """
-from sys import argv
+import sys
+from sys import argv as argv 
 
 if len(argv) <= 2:
-    sys.stderr.write("Usage: ./markdown2html.py README.md README.html")
+    sys.stderr.write("Usage: ./markdown2html.py README.md README.html\n")
     exit(1)
 
 
