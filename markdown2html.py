@@ -7,6 +7,7 @@ a text file to html
 import sys
 from os import path as path
 from sys import argv as argv
+import markdown
 
 if __name__ == "__main__":
 
@@ -26,6 +27,6 @@ if __name__ == "__main__":
         content = f_i.read()
         f_i.close()
         f_o = open(File_out, "w")
-        f_o.write(content)
+        f_o.write(markdown.markdown(content))
         f_o.close()
         exit(0)
