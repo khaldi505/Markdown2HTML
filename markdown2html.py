@@ -7,7 +7,7 @@ Second argument is the output file name
 from sys import argv
 
 if len(argv) <= 2:
-    print("Usage: ./markdown2html.py README.md README.html")
+    sys.stderr.write("Usage: ./markdown2html.py README.md README.html")
     exit(1)
 
 
