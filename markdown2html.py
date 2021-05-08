@@ -59,8 +59,8 @@ if __name__ == "__main__":
             result += lists(temp_content[counter])
             created_items += 1
         if created_items == U_list_items:
-            if not str("</ul>\n") in result:
-                result += "</ul>\n"
+            if not str("</ul>") in result:
+                result += "</ul>"
         counter += 1
 
     """
