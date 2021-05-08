@@ -2,7 +2,8 @@
 
 """
 a script that markdown
-a text file to html
+a text file to HTML file,
+i.e a "# heading" to "<h1> heading</h1>".
 """
 import sys
 from os import path as path
@@ -21,29 +22,34 @@ if __name__ == "__main__":
         sys.stderr.write("Missing {}\n".format(File_in))
         exit(1)
 
-    else:
-        f_i = open(File_in, "r")
-        content = f_i.read()
-        f_i.close()
-        content = content.split("\n")
-        counter = 0
-        line = ""
-        result = ""
-        while counter < len(content):
-            if str("#") in content[counter]:
-                Heading_weight = content[counter].count('#')
-                content[counter] = content[counter].split("#")
-                if counter < len(content) - 1:
-                    result += "<h{}>".format(Heading_weight) + \
-                        content[counter][Heading_weight] + \
-                        "</h{}>".format(Heading_weight) + "\n"
-                else:
-                    result += "<h{}>".format(Heading_weight) + \
-                        content[counter][Heading_weight] + \
-                        "</h{}>".format(Heading_weight)
+    def Headings(Pharse):
+        """
+            a function that converts a phrase with a
+            "#" into an html header element.
+        """
+        Heading_weight = Pharse.count("#")
+        Pharse = Pharse.split("#")
+        return("<h{}>{}</h{}>\n".format(
+            Heading_weight, Pharse[Heading_weight], Heading_weight))
 
-            counter += 1
-        f_o = open(File_out, "w")
-        f_o.write(str(result))
-        f_o.close()
-        exit(0)
+    f_i = open(File_in, "r")
+    content = f_i.read()
+    f_i.close()
+    content = content.split("\n")
+    counter = 0
+    result = ""
+    # U_list_items = sum(x.count('-') for x in content)
+    temp_content = content
+
+    while counter < len(temp_content):
+        if str("#") in temp_content[counter]:
+            result += Headings(temp_content[counter])
+        counter += 1
+
+    """
+        write the result content to the output file and exit
+    """
+    f_o = open(File_out, "w")
+    f_o.write(str(result))
+    f_o.close()
+    exit(0)
