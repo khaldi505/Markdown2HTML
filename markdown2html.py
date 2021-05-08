@@ -31,7 +31,7 @@ if __name__ == "__main__":
         Pharse = Pharse.split("#")
         return("<h{}>{}</h{}>\n".format(
             Heading_weight, Pharse[Heading_weight], Heading_weight))
-    
+
     def lists(Pharse):
         """
             a function that converts a phrase with a
@@ -39,7 +39,6 @@ if __name__ == "__main__":
         """
         Pharse = Pharse.split("-")
         return("<li>{}</li>\n".format(Pharse[1]))
-
 
     f_i = open(File_in, "r")
     content = f_i.read()
@@ -60,8 +59,8 @@ if __name__ == "__main__":
             result += lists(temp_content[counter])
             created_items += 1
         if created_items == U_list_items:
-            if not str("</ul>") in result:
-                result += "</ul>"         
+            if not str("</ul>\n") in result:
+                result += "</ul>\n"
         counter += 1
 
     """
