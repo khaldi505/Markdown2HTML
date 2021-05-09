@@ -32,43 +32,56 @@ if __name__ == "__main__":
         return("<h{}>{}</h{}>\n".format(
             Heading_weight, Pharse[Heading_weight], Heading_weight))
 
-    def lists(Pharse):
+    def lists(Pharse, list_type):
         """
             a function that converts a phrase with a
             "-" into an html list element.
         """
-        Pharse = Pharse.split("-")
+        Pharse = Pharse.split(list_type)
         return("<li>{}</li>\n".format(Pharse[1]))
 
     f_i = open(File_in, "r")
     content = f_i.read()
+    list_type = {"type": "", "tag": ""}
     f_i.close()
     content = content.split("\n")
     counter = 0
     result = ""
     U_list_items = sum(x.count('-') for x in content)
+    O_list_items = sum(x.count('*') for x in content)
     created_items = 0
     temp_content = content
 
     while counter < len(temp_content):
         if str("#") in temp_content[counter]:
             result += Headings(temp_content[counter])
-        if str("-") in temp_content[counter]:
-            if not str("<ul>\n") in temp_content and created_items == 0:
-                result += "<ul>\n"
-            result += lists(temp_content[counter])
+
+        """checking if there's a list in this phrase"""
+        if str("-") in temp_content[counter]
+        or str("*") in temp_content[counter]:
+            """ list type ? """
+            if str("-") in temp_content[counter]:
+                list_type["tag"] = "ul"
+                list_type["type"] = "-"
+            if str("*") in temp_content[counter]:
+                list_type["tag"] = "ol"
+                list_type["type"] = "*"
+            if not str("<{}>\n".format(list_type["tag"])) in temp_content
+            and created_items == 0:
+                result += "<{}>\n".format(list_type["tag"])
+            result += lists(temp_content[counter], list_type["type"])
             created_items += 1
             try:
-                if not str("-") in temp_content[counter + 1]:
-                    result += "</ul>\n"
+                if not list_type['type'] in temp_content[counter + 1]:
+                    result += "</{}>\n".format(list_type["tag"])
                     created_items = 0
                     U_list_items -= created_items
             except IndexError:
                 pass
 
         if created_items == U_list_items:
-            if not str("</ul>\n") in result:
-                result += "</ul>\n"
+            if not str("</{}>\n".format(list_type["tag"])) in result:
+                result += "</{}>\n".format(list_type["tag"])
                 created_items = 0
         counter += 1
 
