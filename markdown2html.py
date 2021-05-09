@@ -57,8 +57,8 @@ if __name__ == "__main__":
             result += Headings(temp_content[counter])
 
         """checking if there's a list in this phrase"""
-        if str("-") in temp_content[counter]
-        or str("*") in temp_content[counter]:
+        if str("-") in temp_content[counter] \
+                or str("*") in temp_content[counter]:
             """ list type ? """
             if str("-") in temp_content[counter]:
                 list_type["tag"] = "ul"
@@ -66,8 +66,8 @@ if __name__ == "__main__":
             if str("*") in temp_content[counter]:
                 list_type["tag"] = "ol"
                 list_type["type"] = "*"
-            if not str("<{}>\n".format(list_type["tag"])) in temp_content
-            and created_items == 0:
+            if not str("<{}>\n".format(list_type["tag"])) \
+                    in temp_content and created_items == 0:
                 result += "<{}>\n".format(list_type["tag"])
             result += lists(temp_content[counter], list_type["type"])
             created_items += 1
