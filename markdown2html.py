@@ -37,7 +37,7 @@ if __name__ == "__main__":
             a function that converts a phrase with a
             "-" into an html list element.
         """
-        Pharse = Pharse.split("- ")
+        Pharse = Pharse.split("-")
         return("<li>{}</li>\n".format(Pharse[1]))
 
     f_i = open(File_in, "r")
@@ -58,9 +58,18 @@ if __name__ == "__main__":
                 result += "<ul>\n"
             result += lists(temp_content[counter])
             created_items += 1
+            try:
+                if not str("-") in temp_content[counter + 1]:
+                    result += "</ul>\n"
+                    created_items = 0
+                    U_list_items -= created_items
+            except IndexError:
+                pass
+
         if created_items == U_list_items:
             if not str("</ul>\n") in result:
                 result += "</ul>\n"
+                created_items = 0
         counter += 1
 
     """
